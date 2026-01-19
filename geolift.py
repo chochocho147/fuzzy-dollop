@@ -378,7 +378,7 @@ class GeoLift:
         post_period = [self.post_period[0], self.post_period[1]]
 
         # Run CausalImpact
-        ci = CausalImpact(data, pre_period, post_period, prior_level_sd=0.01)
+        ci = CausalImpact(data, pre_period, post_period)
 
         # Extract results
         summary = ci.summary_data
