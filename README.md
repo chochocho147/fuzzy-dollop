@@ -32,8 +32,10 @@ pip install -r requirements.txt
 - `scipy` - Statistical functions
 - `scikit-learn` - Machine learning tools
 - `statsmodels` - Statistical models
-- `causalimpact` - Bayesian causal inference (optional but recommended)
+- `tfcausalimpact` - Bayesian causal inference (recommended)
 - `jupyter` - Jupyter notebook support
+
+**Important:** Use `tfcausalimpact`, not `causalimpact` (0.2.6). Both have the same import name but tfcausalimpact is actively maintained and compatible with modern Python/pandas.
 
 ## Quick Start
 

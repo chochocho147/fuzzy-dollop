@@ -388,6 +388,22 @@ If you still see this error, the pipeline will automatically fall back to the cu
 Warning: causalimpact not available. Using fallback synthetic control implementation.
 ```
 
+### Error: "AttributeError: 'CausalImpact' object has no attribute 'summary_data'"
+
+**Problem:** You have the wrong causalimpact package installed. There are multiple packages with similar names, and you need the correct one.
+
+**Solution:** Uninstall the old package and install tfcausalimpact:
+```bash
+pip uninstall causalimpact
+pip install tfcausalimpact
+```
+
+**Why?** Package confusion:
+- `causalimpact` (0.2.6 by jamalsenouci) - Deprecated, incompatible with modern pandas
+- `tfcausalimpact` (by WillianFuks) - Modern successor, actively maintained (use this one!)
+
+Both packages use the same import statement (`from causalimpact import CausalImpact`), but tfcausalimpact is the one our code needs.
+
 ### Poor Model Fit (R² < 0.7)
 
 **Possible causes:**

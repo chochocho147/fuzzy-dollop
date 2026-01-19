@@ -93,6 +93,7 @@ They should be similar (within 10-20%).
 | "No such file my_data.csv" | Put CSV in same folder as script |
 | "KeyError: date" | Your CSV needs columns: date, location, revenue |
 | Date format error | Use YYYY-MM-DD format (2024-01-15) |
+| "AttributeError: ... 'summary_data'" | Wrong package! Run: `pip uninstall causalimpact && pip install tfcausalimpact` |
 
 ---
 
