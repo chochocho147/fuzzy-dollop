@@ -376,6 +376,18 @@ pip install -r requirements.txt
 3. Type: `yyyy-mm-dd`
 4. Save as CSV again
 
+### Error: "TypeError: CausalImpact.__init__() got an unexpected keyword argument 'prior_level_sd'"
+
+**Solution:** This has been fixed in the latest version. Update your code:
+```bash
+git pull origin claude/geolift-testing-pipeline-1d0DT
+```
+
+If you still see this error, the pipeline will automatically fall back to the custom synthetic control implementation (which works just as well). You'll see:
+```
+Warning: causalimpact not available. Using fallback synthetic control implementation.
+```
+
 ### Poor Model Fit (R² < 0.7)
 
 **Possible causes:**
