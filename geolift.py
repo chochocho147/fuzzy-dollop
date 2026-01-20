@@ -380,20 +380,25 @@ class GeoLift:
         # Run CausalImpact
         ci = CausalImpact(data, pre_period, post_period)
 
-        # Extract results
+        # Extract results from correct tfcausalimpact API
+        inferences = ci.inferences
         summary = ci.summary_data
 
         results = {
+            # Time series data from inferences DataFrame
             'actual': ci.data['y'],
-            'predicted': ci.data['y'] - ci.data['point_effect'],
-            'point_effect': ci.data['point_effect'],
-            'lower_bound': ci.data['point_effect_lower'],
-            'upper_bound': ci.data['point_effect_upper'],
-            'cumulative_effect': summary['average']['cum_effect'][0],
-            'cumulative_lower': summary['average']['cum_effect_lower'][0],
-            'cumulative_upper': summary['average']['cum_effect_upper'][0],
-            'p_value': summary['average'].get('p_value', [None])[0],
-            'relative_effect': summary['average']['rel_effect'][0],
+            'predicted': inferences['complete_preds_means'],
+            'point_effect': inferences['point_effects_means'],
+            'lower_bound': inferences['point_effects_lower'],
+            'upper_bound': inferences['point_effects_upper'],
+
+            # Aggregate statistics from summary_data DataFrame
+            'cumulative_effect': summary.loc['abs_effect', 'cumulative'],
+            'cumulative_lower': summary.loc['abs_effect_lower', 'cumulative'],
+            'cumulative_upper': summary.loc['abs_effect_upper', 'cumulative'],
+            'relative_effect': summary.loc['rel_effect', 'cumulative'],
+            'p_value': ci.p_value,
+
             'causalimpact_object': ci
         }
 
